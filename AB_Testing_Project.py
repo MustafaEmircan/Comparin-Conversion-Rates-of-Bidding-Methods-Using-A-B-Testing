@@ -1,10 +1,3 @@
-#####################################################
-# AB Testi ile BiddingYöntemlerinin Dönüşümünün Karşılaştırılması
-#####################################################
-
-#####################################################
-# İş Problemi
-#####################################################
 
 # Facebook kısa süre önce mevcut "maximumbidding" adı verilen teklif verme türüne alternatif
 # olarak yeni bir teklif türü olan "average bidding"’i tanıttı. Müşterilerimizden biri olan bombabomba.com,
