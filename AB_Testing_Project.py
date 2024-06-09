@@ -62,7 +62,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.expand_frame_repr', False)
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
-# Adım 1:  ab_testing_data.xlsx adlı kontrol ve test grubu verilerinden oluşan veri setini okutunuz. Kontrol ve test grubu verilerini ayrı değişkenlere atayınız.
+# Adım 1:  ab_testing_data.xlsx adlı kontrol ve test grubu verilerinden oluşan veri setini okutunuz. Kontrol ve test grubu verilerini ayrı değişkenlere atayalım.
 
 dataframe_control = pd.read_excel("PROJECTS/Measurement Problems PROJECT/ab_testing.xlsx", sheet_name="Control Group")
 dataframe_test = pd.read_excel("PROJECTS/Measurement Problems PROJECT/ab_testing.xlsx", sheet_name="Test Group")
@@ -70,7 +70,7 @@ dataframe_test = pd.read_excel("PROJECTS/Measurement Problems PROJECT/ab_testing
 df_control = dataframe_control.copy()
 df_test = dataframe_test.copy()
 
-# Adım 2: Kontrol ve test grubu verilerini analiz ediniz.
+# Adım 2: Kontrol ve test grubu verilerini analiz edelim.
 
 def check_df(dataframe, head=5):
     print("##################### Shape #####################")
@@ -90,7 +90,7 @@ check_df(df_control)
 check_df(df_test)
 
 
-# Adım 3: Analiz işleminden sonra concat metodunu kullanarak kontrol ve test grubu verilerini birleştiriniz.
+# Adım 3: Analiz işleminden sonra concat metodunu kullanarak kontrol ve test grubu verilerini birleştirelim.
 
 df_control["group"] = "control"
 df_test["group"] = "test"
@@ -107,7 +107,7 @@ df.head()
 # H0 : M1 = M2 (Kontrol grubu ve test grubu satın alma ortalamalarıarasında fark yoktur.)
 # H1 : M1!= M2 (Kontrol grubu ve test grubu satın alma ortalamalarıarasında fark vardır.)
 
-# Adım 2: Kontrol ve test grubu için purchase(kazanç) ortalamalarını analiz ediniz
+# Adım 2: Kontrol ve test grubu için purchase(kazanç) ortalamalarını analiz edelim
 
 df.groupby("group").agg({"Purchase": "mean"})
 
@@ -122,7 +122,7 @@ df.groupby("group").agg({"Purchase": "mean"})
 
 # Adım 1: Hipotez testi yapılmadan önce varsayım kontrollerini yapınız.Bunlar Normallik Varsayımı ve Varyans Homojenliğidir.
 
-# Kontrol ve test grubunun normallik varsayımına uyup uymadığını Purchase değişkeni üzerinden ayrı ayrı test ediniz
+# Kontrol ve test grubunun normallik varsayımına uyup uymadığını Purchase değişkeni üzerinden ayrı ayrı test edelim
 
 # Normallik Varsayımı :
 # H0: Normal dağılım varsayımı sağlanmaktadır.
@@ -143,8 +143,8 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 # H1: Varyanslarhomojen Değildir.
 # p < 0.05 H0 RED
 # p > 0.05 H0 REDDEDİLEMEZ
-# Kontrol ve test grubu için varyans homojenliğinin sağlanıp sağlanmadığını Purchase değişkeni üzerinden test ediniz.
-# Test sonucuna göre normallik varsayımı sağlanıyor mu? Elde edilen p-valuedeğerlerini yorumlayınız.
+# Kontrol ve test grubu için varyans homojenliğinin sağlanıp sağlanmadığını Purchase değişkeni üzerinden test edelim.
+# Test sonucuna göre normallik varsayımı sağlanıyor mu? Elde edilen p-valuedeğerlerini yorumlayalım.
 
 test_stat, pvalue = levene(df.loc[df["group"] == "control", "Purchase"],
                            df.loc[df["group"] == "test", "Purchase"])
@@ -153,7 +153,7 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 # H0 REDDEDİLEMEZ. Control ve Test grubunun değerleri varyans homejenliği varsayımını sağlamaktadır.
 # Varyanslar Homojendir.
 
-# Adım 2: Normallik Varsayımı ve Varyans Homojenliği sonuçlarına göre uygun testi seçiniz
+# Adım 2: Normallik Varsayımı ve Varyans Homojenliği sonuçlarına göre uygun testi seçelim
 
 # Varsayımlar sağlandığı için bağımsız iki örneklem t testi (parametrik test) yapılmaktadır.
 # H0: M1 = M2 (Kontrol grubu ve test grubu satın alma ortalamaları arasında ist. ol.anl.fark yoktur.)
@@ -169,7 +169,7 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 # p > H0 , H0 REDDEDİLEMEZ. Control ve Test grubunun değerleri varyans homejenliği varsayımını sağlamaktadır.
 
 # Adım 3: Test sonucunda elde edilen p_value değerini göz önünde bulundurarak kontrol ve test grubu satın alma
-# ortalamaları arasında istatistiki olarak anlamlı bir fark olup olmadığını yorumlayınız.
+# ortalamaları arasında istatistiki olarak anlamlı bir fark olup olmadığını yorumlayalım.
 
 # p-value=0.3493
 # HO reddedilemez. Kontrol ve test grubu satın alma ortalamaları arasında istatistiksel olarak anlamlı farklılık yoktur.
